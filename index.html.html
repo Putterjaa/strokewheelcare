@@ -1,0 +1,992 @@
+<!DOCTYPE html>
+<html lang="th" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>StrokeWheelCare - ระบบวิเคราะห์และออกแบบวีลแชร์สำหรับผู้ป่วยสโตรก</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Kanit:wght@200;300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        body { font-family: 'Kanit', sans-serif; }
+    </style>
+</head>
+<body class="bg-white text-zinc-800 antialiased" id="top">
+
+    <nav class="bg-white/90 backdrop-blur-md sticky top-0 z-50 border-b border-zinc-100 transition-all shadow-sm">
+        <div class="container mx-auto px-6 py-4 flex justify-between items-center">
+            <a href="#" class="text-xl font-bold tracking-tight text-zinc-900 flex items-center gap-2.5 hover:opacity-80 hover:scale-105 transition-all duration-300 cursor-pointer">
+                <span class="bg-gradient-to-r from-indigo-600 to-violet-600 bg-clip-text text-transparent">StrokeWheelCare</span>
+            </a>
+            
+            <div class="hidden lg:flex gap-5 xl:gap-7 items-center text-sm font-medium text-zinc-600">
+                <a href="#what-is-stroke" class="hover:text-indigo-600 transition-colors">สโตรกคืออะไร</a>
+                <a href="#stroke-info" class="hover:text-indigo-600 transition-colors">สถิติโรคสโตรก</a>
+                <a href="#problem-section" class="hover:text-indigo-600 transition-colors">ผลกระทบ</a>
+                <a href="#selector-section" class="hover:text-indigo-600 transition-colors">วิเคราะห์อาการ</a>
+                <a href="#measurement-guide" class="hover:text-indigo-600 transition-colors">วิธีวัดขนาดร่างกาย</a>
+                <a href="#customizer-section" class="bg-zinc-900 text-white px-5 py-2.5 rounded-full hover:bg-zinc-800 transition-all shadow-md flex items-center">
+                    คำนวณสรีระ
+                </a>
+            </div>
+        </div>
+    </nav>
+
+    <header class="relative overflow-hidden bg-white py-20 lg:py-28 px-6 border-b border-zinc-50">
+        <div class="absolute inset-0 bg-[radial-gradient(#e5e7eb_1px,transparent_1px)] [background-size:16px_16px] opacity-30"></div>
+        
+        <div class="container mx-auto max-w-7xl relative">
+            <div class="grid lg:grid-cols-2 gap-12 lg:gap-8 items-center">
+                
+                <div class="space-y-8 text-center lg:text-left z-10">
+                    <span class="inline-flex items-center gap-2 bg-indigo-50 text-indigo-700 px-4 py-2 rounded-full text-xs md:text-sm font-bold tracking-wide border border-indigo-100 shadow-sm">
+                        <span class="w-2.5 h-2.5 rounded-full bg-indigo-600 animate-pulse"></span>
+                        นวัตกรรม AI เฉพาะทางสำหรับผู้ป่วยสโตรก (Stroke)
+                    </span>
+                    
+                    <h1 class="text-4xl md:text-5xl lg:text-6xl font-extrabold text-zinc-950 tracking-tight leading-[1.15]">
+                        ระบบวิเคราะห์และออกแบบ<br>
+                        <span class="bg-gradient-to-r from-indigo-600 via-violet-600 to-purple-600 bg-clip-text text-transparent">วีลแชร์อัจฉริยะส่วนบุคคล</span>
+                    </h1>
+                    
+                    <p class="text-base md:text-lg text-zinc-500 font-light max-w-xl mx-auto lg:mx-0 leading-relaxed">
+                        แพลตฟอร์มวิเคราะห์สรีระและพยาธิสภาพที่ออกแบบมาเพื่อ <strong class="text-indigo-600 font-semibold bg-indigo-50 px-2 py-0.5 rounded">ผู้ป่วยโรคหลอดเลือดสมอง (Stroke) โดยเฉพาะ</strong> ช่วยคัดเลือกฟังก์ชันรถเข็นที่ป้องกันแผลกดทับ ลดการเกร็ง และส่งเสริมการฟื้นฟูร่างกายอย่างตรงจุด
+                    </p>
+                    
+                    <div class="pt-2 flex flex-wrap justify-center lg:justify-start gap-4">
+                        <a href="#selector-section" class="bg-indigo-600 hover:bg-indigo-700 text-white font-medium text-sm px-8 py-4 rounded-xl shadow-lg shadow-indigo-200 hover:shadow-xl transition-all transform hover:-translate-y-0.5 flex items-center justify-center">
+                            1. วิเคราะห์ตามระดับอาการ
+                        </a>
+                        <a href="#customizer-section" class="bg-zinc-50 hover:bg-zinc-100 text-zinc-900 font-medium text-sm px-8 py-4 rounded-xl transition-all border border-zinc-200 flex items-center justify-center">
+                            2. คำนวณขนาดสรีระขั้นสูง
+                        </a>
+                    </div>
+                </div>
+
+                <div class="relative mx-auto w-full max-w-lg lg:max-w-none lg:pl-10">
+                    <div class="absolute -inset-1 bg-gradient-to-r from-indigo-500 to-cyan-500 rounded-[2.5rem] blur-xl opacity-20 animate-pulse"></div>
+                    <div class="relative bg-zinc-900 border border-zinc-800 rounded-[2rem] p-2 shadow-2xl overflow-hidden aspect-[4/3] md:aspect-auto">
+                        <img src="ai photo.jpg" alt="AI Technology for Stroke Rehabilitation Blueprint" class="w-full h-full object-cover rounded-[1.5rem] opacity-90 hover:opacity-100 transition-opacity duration-500 md:min-h-[400px]">
+                        
+                        <div class="absolute bottom-6 left-6 right-6 bg-black/50 backdrop-blur-md border border-white/10 p-4 rounded-xl flex items-center justify-between">
+                            <div class="space-y-1">
+                                <p class="text-[10px] text-cyan-400 font-mono font-bold tracking-widest">AI STROKE ANALYSIS SYSTEM</p>
+                                <p class="text-sm text-white font-medium">ประมวลผลข้อมูลทางกายภาพผู้ป่วยสโตรก</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </header>
+
+    <section id="what-is-stroke" class="relative bg-white py-24 px-6 border-b border-zinc-100 overflow-hidden">
+        <div class="absolute top-10 left-10 w-[30rem] h-[30rem] bg-indigo-400/10 rounded-full blur-3xl mix-blend-multiply pointer-events-none"></div>
+        <div class="absolute bottom-10 right-10 w-[30rem] h-[30rem] bg-rose-400/10 rounded-full blur-3xl mix-blend-multiply pointer-events-none"></div>
+        <div class="container mx-auto max-w-6xl relative z-10">
+            <div class="text-center mb-16 space-y-3">
+                <span class="text-xs font-bold tracking-widest text-transparent bg-clip-text bg-gradient-to-r from-indigo-500 to-violet-500 uppercase bg-indigo-50/80 backdrop-blur-sm border border-indigo-100 px-4 py-1.5 rounded-full shadow-sm">Medical Knowledge</span>
+                <h2 class="text-3xl md:text-4xl font-bold tracking-tight text-zinc-950">โรคหลอดเลือดสมอง (Stroke) คืออะไร?</h2>
+                <p class="text-zinc-500 max-w-2xl mx-auto font-light text-sm md:text-base leading-relaxed">ทำความเข้าใจภัยเงียบที่ทำลายระบบประสาทและสมอง เพื่อการรับมือและป้องกันอย่างถูกวิธี</p>
+            </div>
+
+            <div class="grid md:grid-cols-2 gap-6">
+                <div class="relative overflow-hidden bg-gradient-to-br from-indigo-600 to-blue-700 p-8 md:p-10 rounded-[2rem] shadow-xl shadow-indigo-200/50 hover:-translate-y-1 transition-transform duration-300">
+                    <div class="absolute -right-4 -top-8 text-[150px] font-black text-white/10 select-none leading-none">01</div>
+                    <div class="relative z-10">
+                        <h3 class="text-xl md:text-2xl font-bold text-white mb-4">ข้อมูลของโรค (Overview)</h3>
+                        <p class="text-sm md:text-base text-indigo-50 font-light leading-relaxed">
+                            <strong>โรคหลอดเลือดสมอง (Stroke)</strong> คือ ภาวะที่สมองขาดเลือดไปเลี้ยงเนื่องจากหลอดเลือดตีบ อุดตัน หรือแตก ส่งผลให้เนื้อเยื่อสมองถูกทำลาย เซลล์สมองจะเริ่มตายภายในไม่กี่นาทีหากไม่ได้รับการรักษา ทำให้ผู้ป่วยสูญเสียความสามารถในการควบคุมร่างกาย เกิดภาวะอัมพฤกษ์ อัมพาต หรือรุนแรงถึงขั้นเสียชีวิต ถือเป็นภาวะฉุกเฉินทางการแพทย์ที่ต้องแข่งกับเวลา
+                        </p>
+                    </div>
+                </div>
+
+                <div class="relative overflow-hidden bg-gradient-to-br from-rose-50 to-pink-50 border border-rose-100 p-8 md:p-10 rounded-[2rem] shadow-sm hover:shadow-md transition-all duration-300 group">
+                    <div class="absolute -right-4 -top-8 text-[150px] font-black text-rose-900/5 select-none leading-none group-hover:text-rose-900/10 transition-colors">02</div>
+                    <div class="relative z-10">
+                        <h3 class="text-xl md:text-2xl font-bold text-rose-900 mb-4">ประเภทของสโตรก (Types)</h3>
+                        <ul class="space-y-4 text-sm md:text-base text-rose-800/80 font-light">
+                            <li class="flex items-start gap-2.5">
+                                <span><strong class="text-rose-900 font-medium">หลอดเลือดสมองตีบ/อุดตัน:</strong> พบมากที่สุดถึง 80-85% เกิดจากลิ่มเลือดหรือไขมันอุดตันในเส้นเลือด</span>
+                            </li>
+                            <li class="flex items-start gap-2.5">
+                                <span><strong class="text-rose-900 font-medium">หลอดเลือดสมองแตก:</strong> พบ 15-20% เกิดจากหลอดเลือดเปราะบางแตกออก เลือดคั่งในสมอง</span>
+                            </li>
+                            <li class="flex items-start gap-2.5">
+                                <span><strong class="text-rose-900 font-medium">สมองขาดเลือดชั่วคราว (TIA):</strong> อาการจะหายไปเองใน 24 ชม. เป็นสัญญาณเตือนสำคัญ</span>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="relative overflow-hidden bg-gradient-to-br from-amber-50 to-orange-50 border border-amber-200 p-8 md:p-10 rounded-[2rem] shadow-sm hover:shadow-md transition-all duration-300 group">
+                    <div class="absolute -right-4 -top-8 text-[150px] font-black text-amber-900/5 select-none leading-none group-hover:text-amber-900/10 transition-colors">03</div>
+                    <div class="relative z-10">
+                        <h3 class="text-xl md:text-2xl font-bold text-amber-900 mb-4">อาการที่พบบ่อย (Symptoms)</h3>
+                        <p class="text-sm text-amber-800/80 font-light leading-relaxed mb-5">นอกจากหลักการเตือนภัย F.A.S.T (หน้าเบี้ยว แขนอ่อนแรง พูดไม่ชัด) อาการอื่นที่อาจพบได้แก่:</p>
+                        <ul class="grid grid-cols-2 gap-x-4 gap-y-3 text-sm md:text-base text-amber-900/80 font-medium">
+                            <li class="flex items-center gap-2 bg-white/50 p-2 rounded-lg border border-amber-100/50">ปวดศีรษะรุนแรง</li>
+                            <li class="flex items-center gap-2 bg-white/50 p-2 rounded-lg border border-amber-100/50">ตามัว ภาพซ้อน</li>
+                            <li class="flex items-center gap-2 bg-white/50 p-2 rounded-lg border border-amber-100/50">เดินเซ ทรงตัวไม่ได้</li>
+                            <li class="flex items-center gap-2 bg-white/50 p-2 rounded-lg border border-amber-100/50">ชาครึ่งซีกกะทันหัน</li>
+                            <li class="flex items-center gap-2 bg-white/50 p-2 rounded-lg border border-amber-100/50">กลืนลำบาก สำลัก</li>
+                            <li class="flex items-center gap-2 bg-white/50 p-2 rounded-lg border border-amber-100/50">สับสน นึกคำพูดไม่ออก</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="relative overflow-hidden bg-gradient-to-br from-emerald-50 to-teal-50 border border-emerald-200 p-8 md:p-10 rounded-[2rem] shadow-sm hover:shadow-md transition-all duration-300 group">
+                    <div class="absolute -right-4 -top-8 text-[150px] font-black text-emerald-900/5 select-none leading-none group-hover:text-emerald-900/10 transition-colors">04</div>
+                    <div class="relative z-10">
+                        <h3 class="text-xl md:text-2xl font-bold text-emerald-900 mb-4">วิธีป้องกัน (Prevention)</h3>
+                        <ul class="space-y-4 text-sm md:text-base text-emerald-800/80 font-light">
+                            <li class="flex items-start gap-2.5">
+                                <span><strong class="text-emerald-900 font-medium">ควบคุมโรคประจำตัว:</strong> คุมความดันโลหิต เบาหวาน และระดับไขมันในเลือดให้อยู่ในเกณฑ์</span>
+                            </li>
+                            <li class="flex items-start gap-2.5">
+                                <span><strong class="text-emerald-900 font-medium">ปรับพฤติกรรม:</strong> งดสูบบุหรี่เด็ดขาด และจำกัดการดื่มเครื่องดื่มแอลกอฮอล์</span>
+                            </li>
+                            <li class="flex items-start gap-2.5">
+                                <span><strong class="text-emerald-900 font-medium">โภชนาการ & กีฬา:</strong> ลดเค็ม ลดมัน ทานครบ 5 หมู่ และออกกำลังกาย 150 นาที/สัปดาห์</span>
+                            </li>
+                            <li class="flex items-start gap-2.5">
+                                <span><strong class="text-emerald-900 font-medium">ตรวจสุขภาพประจำปี:</strong> ตรวจเช็คความเสี่ยงโรคหัวใจ คลื่นไฟฟ้าหัวใจ และหลอดเลือด</span>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="stroke-info" class="bg-slate-900 text-white py-24 px-6 relative overflow-hidden">
+        <div class="absolute top-0 right-0 w-96 h-96 bg-indigo-500/10 rounded-full blur-3xl transform translate-x-1/2 -translate-y-1/2"></div>
+        <div class="absolute bottom-0 left-0 w-96 h-96 bg-cyan-500/10 rounded-full blur-3xl transform -translate-x-1/2 translate-y-1/2"></div>
+
+        <div class="container mx-auto max-w-6xl relative z-10">
+            <div class="text-center mb-16 space-y-3">
+                <span class="text-xs font-bold tracking-widest text-indigo-400 uppercase bg-slate-800/50 border border-indigo-500/30 px-3 py-1 rounded-md">Thailand Health Insight</span>
+                <h2 class="text-3xl font-bold tracking-tight text-white">สถานการณ์และสถิติโรคหลอดเลือดสมองในประเทศไทย</h2>
+                <p class="text-slate-400 max-w-2xl mx-auto font-light text-sm leading-relaxed">ข้อมูลสะท้อนความรุนแรงและแนวโน้มที่เพิ่มขึ้นจนเป็นสาเหตุการเสียชีวิตอันดับ 2 ของคนไทย</p>
+            </div>
+
+            <div class="grid md:grid-cols-3 gap-6 mb-16">
+                <div class="bg-slate-800/40 backdrop-blur-sm border border-slate-700/50 p-8 rounded-3xl text-center hover:bg-slate-800/60 transition-colors">
+                    <div class="text-5xl md:text-6xl font-extrabold text-transparent bg-clip-text bg-gradient-to-r from-indigo-400 to-cyan-400 mb-4">25%</div>
+                    <h4 class="font-semibold text-slate-100 text-lg mb-2">1 ใน 4 ของประชากร</h4>
+                    <p class="text-sm text-slate-400 font-light leading-relaxed">ประชากรวัยผู้ใหญ่ทั่วไป มีความเสี่ยงที่จะเกิดโรคหลอดเลือดสมองในช่วงใดช่วงหนึ่งของชีวิต</p>
+                </div>
+                <div class="bg-slate-800/40 backdrop-blur-sm border border-slate-700/50 p-8 rounded-3xl text-center hover:bg-slate-800/60 transition-colors">
+                    <div class="text-5xl md:text-6xl font-extrabold text-transparent bg-clip-text bg-gradient-to-r from-indigo-400 to-cyan-400 mb-4">300k+</div>
+                    <h4 class="font-semibold text-slate-100 text-lg mb-2">ผู้ป่วยใหม่ในประเทศไทย</h4>
+                    <p class="text-sm text-slate-400 font-light leading-relaxed">ในแต่ละปีมีผู้ป่วยสโตรกรายใหม่กว่าสามแสนคน และเป็นสาเหตุอันดับต้นๆ ของภาวะทุพพลภาพ</p>
+                </div>
+                <div class="bg-slate-800/40 backdrop-blur-sm border border-slate-700/50 p-8 rounded-3xl text-center hover:bg-slate-800/60 transition-colors">
+                    <div class="text-5xl md:text-6xl font-extrabold text-transparent bg-clip-text bg-gradient-to-r from-indigo-400 to-cyan-400 mb-4">30%+</div>
+                    <h4 class="font-semibold text-slate-100 text-lg mb-2">ต้องพึ่งพาวีลแชร์</h4>
+                    <p class="text-sm text-slate-400 font-light leading-relaxed">ผู้ป่วยที่รอดชีวิตจากสโตรกมักมีภาวะอ่อนแรงครึ่งซีก ทำให้กว่า 30% จำเป็นต้องใช้วีลแชร์</p>
+                </div>
+            </div>
+
+            <div class="overflow-x-auto bg-slate-800/40 backdrop-blur-sm border border-slate-700/50 rounded-2xl p-6 mb-12 shadow-xl">
+                <table class="w-full text-left text-xs md:text-sm font-light border-collapse text-slate-300">
+                    <thead>
+                        <tr class="border-b border-slate-700 text-slate-100 font-medium bg-slate-800/60">
+                            <th class="py-3.5 px-4 rounded-tl-xl">รายการ</th>
+                            <th class="py-3.5 px-4">ปี 2566</th>
+                            <th class="py-3.5 px-4 rounded-tr-xl">ปี 2567 (1 ต.ค. 66 – 1 ส.ค. 67)</th>
+                        </tr>
+                    </thead>
+                    <tbody class="divide-y divide-slate-700/40">
+                        <tr>
+                            <td class="py-4 px-4 font-medium text-slate-200">จำนวนผู้ป่วยสะสม (ราย)</td>
+                            <td class="py-4 px-4">350,934</td>
+                            <td class="py-4 px-4 text-indigo-300 font-semibold">355,213 - 363,688 *</td>
+                        </tr>
+                        <tr>
+                            <td class="py-4 px-4 font-medium text-slate-200">จำนวนผู้เสียชีวิต (ราย)</td>
+                            <td class="py-4 px-4">47,275</td>
+                            <td class="py-4 px-4 text-rose-400">35,116</td>
+                        </tr>
+                        <tr>
+                            <td class="py-4 px-4 font-medium text-slate-200">อัตราการเสียชีวิตเฉลี่ย</td>
+                            <td class="py-4 px-4">-</td>
+                            <td class="py-4 px-4 text-amber-400 font-semibold">ประมาณ 100 คนต่อวัน</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <div class="grid md:grid-cols-3 gap-6 mb-16">
+                <div class="bg-slate-800/30 border border-slate-700/50 p-6 rounded-2xl">
+                    <span class="text-xs font-mono text-indigo-400 block mb-2 font-bold">ภาพรวมประเทศ</span>
+                    <p class="text-xs md:text-sm text-slate-300 font-light leading-relaxed">
+                        อัตราการรับผู้ป่วยรักษาต่อแสนประชากร เพิ่มจาก 278.49 ในปี 2560 เป็น 330.72 ในปี 2565
+                    </p>
+                </div>
+                <div class="bg-slate-800/30 border border-slate-700/50 p-6 rounded-2xl">
+                    <span class="text-xs font-mono text-rose-400 block mb-2 font-bold">พื้นที่วิกฤต</span>
+                    <p class="text-xs md:text-sm text-slate-300 font-light leading-relaxed">
+                        เขตสุขภาพที่ 3 (นครสวรรค์) มีอุบัติการณ์สูงสุดที่ 398.44 ต่อแสนประชากร
+                    </p>
+                </div>
+                <div class="bg-slate-800/30 border border-slate-700/50 p-6 rounded-2xl">
+                    <span class="text-xs font-mono text-amber-400 block mb-2 font-bold">ชนิดของโรค</span>
+                    <p class="text-xs md:text-sm text-slate-300 font-light leading-relaxed">
+                        โรคชนิดขาดเลือดมีแนวโน้มเพิ่มสูงขึ้นต่อเนื่อง ส่วนชนิดเลือดออกมีอัตราการเสียชีวิตสูง
+                    </p>
+                </div>
+            </div>
+
+            <div class="bg-gradient-to-br from-slate-900 to-indigo-950/40 border border-slate-700/50 rounded-3xl p-8 md:p-10 shadow-2xl">
+                <div class="text-center mb-10">
+                    <h3 class="text-2xl font-bold text-white mb-2">สัญญาณเตือน F.A.S.T</h3>
+                    <p class="text-slate-400 text-sm font-light">หากพบอาการเหล่านี้ ต้องรีบนำผู้ป่วยส่งโรงพยาบาลให้เร็วที่สุด (ภายในเวลาทอง 4.5 ชั่วโมง)</p>
+                </div>
+                
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+                    <div class="bg-slate-800/50 border border-slate-700 p-6 rounded-2xl flex flex-col items-center text-center">
+                        <div class="w-14 h-14 bg-red-500/20 text-red-400 text-2xl font-black rounded-full flex items-center justify-center mb-4">F</div>
+                        <h4 class="font-bold text-slate-100 mb-1">FACE (หน้าเบี้ยว)</h4>
+                        <p class="text-xs text-slate-400 font-light">มุมปากตก ยิ้มแล้วหน้าเบี้ยวครึ่งซีก น้ำลายไหล ควบคุมใบหน้าไม่ได้</p>
+                    </div>
+                    <div class="bg-slate-800/50 border border-slate-700 p-6 rounded-2xl flex flex-col items-center text-center">
+                        <div class="w-14 h-14 bg-orange-500/20 text-orange-400 text-2xl font-black rounded-full flex items-center justify-center mb-4">A</div>
+                        <h4 class="font-bold text-slate-100 mb-1">ARM (แขนอ่อนแรง)</h4>
+                        <p class="text-xs text-slate-400 font-light">แขนหรือขาอ่อนแรงครึ่งซีก ยกไม่ขึ้น ชาตามปลายมือปลายเท้ากะทันหัน</p>
+                    </div>
+                    <div class="bg-slate-800/50 border border-slate-700 p-6 rounded-2xl flex flex-col items-center text-center">
+                        <div class="w-14 h-14 bg-yellow-500/20 text-yellow-400 text-2xl font-black rounded-full flex items-center justify-center mb-4">S</div>
+                        <h4 class="font-bold text-slate-100 mb-1">SPEECH (พูดไม่ชัด)</h4>
+                        <p class="text-xs text-slate-400 font-light">พูดลำบาก พูดอ้อแอ้ นึกคำไม่ออก หรือฟังคนอื่นพูดไม่เข้าใจทันทีทันใด</p>
+                    </div>
+                    <div class="bg-slate-800/50 border border-indigo-500/50 p-6 rounded-2xl flex flex-col items-center text-center shadow-[0_0_15px_rgba(99,102,241,0.2)] relative overflow-hidden">
+                        <div class="absolute inset-0 bg-indigo-500/10 animate-pulse"></div>
+                        <div class="w-14 h-14 bg-indigo-500/20 text-indigo-400 text-2xl font-black rounded-full flex items-center justify-center mb-4 relative z-10">T</div>
+                        <h4 class="font-bold text-slate-100 mb-1 relative z-10">TIME (เวลาคือชีวิต)</h4>
+                        <p class="text-xs text-slate-400 font-light relative z-10">จดจำเวลาที่เริ่มมีอาการ และรีบโทร 1669 ส่ง รพ. ภายใน 4.5 ชั่วโมง</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="about-section" class="bg-white py-24 px-6 border-b border-zinc-100">
+        <div class="container mx-auto px-6 max-w-5xl text-left">
+            <div class="bg-zinc-50 rounded-3xl border border-zinc-200/60 p-8 md:p-12 shadow-sm grid md:grid-cols-3 gap-8 items-start">
+                <div class="md:col-span-1 space-y-2">
+                    <div class="w-12 h-12 bg-white rounded-xl flex items-center justify-center text-2xl shadow-sm border border-zinc-100">💡</div>
+                    <h3 class="text-2xl font-bold tracking-tight text-zinc-950 mt-2">ที่มาและความสำคัญ</h3>
+                    <p class="text-sm font-medium text-indigo-600 uppercase tracking-wider">Concept & Origin</p>
+                </div>
+                <div class="md:col-span-2 space-y-4 text-zinc-500 font-light leading-relaxed text-justify">
+                    <p>สืบเนื่องจากวิกฤตของโรคหลอดเลือดสมอง (Stroke) ผู้ป่วยที่รอดชีวิตส่วนใหญ่มักประสบปัญหาอ่อนแรงครึ่งซีก หรือการทรงตัวบกพร่อง การเลือกใช้วีลแชร์กลายเป็นสิ่งจำเป็นอย่างยิ่งในระยะฟื้นฟู</p>
+                    <p>แต่ในความเป็นจริง วีลแชร์ในท้องตลาดมักเป็นแบบขนาดมาตรฐานเดียว (One-size-fits-all) ซึ่งไม่ตอบโจทย์ความแตกต่างทางกายภาพของผู้ป่วยสโตรกแต่ละราย หากผู้ป่วยนั่งวีลแชร์ที่ผิดสเปคเป็นเวลานาน จะเพิ่มความเสี่ยงต่อการเกิดแผลกดทับ ข้อต่ออักเสบ และโครงสร้างกระดูกสันหลังคดงอ</p>
+                    <p>โครงการ StrokeWheelCair จึงได้พัฒนาแอปพลิเคชันขึ้นมาเพื่อช่วยประเมินอาการและสรีระของผู้ป่วย นำไปสู่การเลือกสรรฟังก์ชันที่ตรงจุด ปลอดภัย และคืนอิสรภาพในการเคลื่อนไหวได้อย่างแท้จริง 🌟</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="pathology-connection" class="bg-slate-50/70 py-24 px-6 border-b border-zinc-200">
+        <div class="container mx-auto max-w-6xl">
+            <div class="text-center mb-16 space-y-3">
+                <span class="text-xs font-bold tracking-widest text-indigo-600 uppercase bg-indigo-100/50 px-4 py-1.5 rounded-full border border-indigo-200 shadow-sm">Medical Synergy</span>
+                <h2 class="text-3xl md:text-4xl font-bold tracking-tight text-zinc-950">ทำไมสรีระถึงสำคัญต่อการฟื้นฟู?</h2>
+                <p class="text-zinc-500 max-w-2xl mx-auto font-light text-sm md:text-base leading-relaxed">การที่ผู้ป่วยสโตรกได้รับวีลแชร์ที่พอดีกับสรีระ มีความเชื่อมโยงโดยตรงกับพยาธิสภาพของโรคและกระบวนการทำกายภาพบำบัด</p>
+            </div>
+
+            <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6 mb-8 text-left">
+                <div class="bg-white p-8 rounded-3xl border border-zinc-200 shadow-sm hover:shadow-md transition-shadow">
+                    <span class="text-indigo-400 font-mono text-xs font-bold tracking-widest block mb-2">01 / ORTHOPEDICS</span>
+                    <h3 class="text-lg font-bold text-zinc-900 mb-3">ป้องกันข้อไหล่หลุดหลวม</h3>
+                    <p class="text-sm text-zinc-600 font-light leading-relaxed">
+                        <strong class="text-zinc-800 font-medium">ปัญหา:</strong> แขนซีกที่อ่อนแรงมักห้อยตกตามแรงโน้มถ่วง ทำให้ข้อไหล่เคลื่อนหลุดและปวดทรมาน<br>
+                        <strong class="text-indigo-600 font-medium">การแก้ปัญหา:</strong> การวัดความสูงของ <strong>"ที่พักแขน"</strong> ให้พอดี (ศอกตั้งฉาก 90 องศา) จะช่วยพยุงน้ำหนักแขนข้างที่อ่อนแรง ปกป้องเส้นเอ็นและข้อต่อหัวไหล่ได้โดยตรง
+                    </p>
+                </div>
+                
+                <div class="bg-white p-8 rounded-3xl border border-zinc-200 shadow-sm hover:shadow-md transition-shadow">
+                    <span class="text-indigo-400 font-mono text-xs font-bold tracking-widest block mb-2">02 / REHABILITATION</span>
+                    <h3 class="text-lg font-bold text-zinc-900 mb-3">ส่งเสริมเทคนิค Hemi-propulsion</h3>
+                    <p class="text-sm text-zinc-600 font-light leading-relaxed">
+                        <strong class="text-zinc-800 font-medium">ปัญหา:</strong> ผู้ป่วยมักเหลือกล้ามเนื้อที่ใช้งานได้ปกติเพียงครึ่งซีก (มือ 1 ข้าง, เท้า 1 ข้าง)<br>
+                        <strong class="text-indigo-600 font-medium">การแก้ปัญหา:</strong> การคำนวณ <strong>"ความสูงเบาะและความยาวน่อง"</strong> ให้พอดี ทำให้ฝ่าเท้าข้างดีวางราบไถพื้นพารถไปข้างหน้าได้ ถือเป็นการทำกายภาพและกระตุ้นประสาทไปในตัว
+                    </p>
+                </div>
+
+                <div class="bg-white p-8 rounded-3xl border border-zinc-200 shadow-sm hover:shadow-md transition-shadow">
+                    <span class="text-indigo-400 font-mono text-xs font-bold tracking-widest block mb-2">03 / NEUROLOGY</span>
+                    <h3 class="text-lg font-bold text-zinc-900 mb-3">ควบคุมอาการเกร็งและการทรงตัว</h3>
+                    <p class="text-sm text-zinc-600 font-light leading-relaxed">
+                        <strong class="text-zinc-800 font-medium">ปัญหา:</strong> การสูญเสียการควบคุมแกนกลางลำตัว ทำให้นั่งเอียงและมีอาการเกร็งกระตุก (Spasticity)<br>
+                        <strong class="text-indigo-600 font-medium">การแก้ปัญหา:</strong> การใช้รถที่มี <strong>"ความกว้างที่นั่ง"</strong> พอดี จะบล็อกลำตัวไม่ให้ล้มเอียง ประกอบกับการจัดข้อต่อสะโพกและเข่าให้ได้ 90 องศา จะยับยั้งรีเฟล็กซ์ที่ทำให้กล้ามเนื้อเกร็งตัว
+                    </p>
+                </div>
+
+                <div class="bg-white p-8 rounded-3xl border border-zinc-200 shadow-sm hover:shadow-md transition-shadow md:col-span-2 lg:col-span-1">
+                    <span class="text-indigo-400 font-mono text-xs font-bold tracking-widest block mb-2">04 / DERMATOLOGY</span>
+                    <h3 class="text-lg font-bold text-zinc-900 mb-3">ป้องกันแผลกดทับ</h3>
+                    <p class="text-sm text-zinc-600 font-light leading-relaxed">
+                        <strong class="text-zinc-800 font-medium">ปัญหา:</strong> ผู้ป่วยอาจชาหรือสูญเสียความรู้สึก ทำให้ไม่รู้ตัวเมื่อเกิดแรงกดทับเป็นเวลานาน<br>
+                        <strong class="text-indigo-600 font-medium">การแก้ปัญหา:</strong> วีลแชร์ที่คำนวณสัดส่วนอย่างถูกต้องจะช่วย <strong>กระจายน้ำหนัก (Pressure Distribution)</strong> ทั่วแผ่นหลัง ก้นกบ และต้นขาอย่างสมดุล ลดอัตราการเกิดแผลเนื้อตาย
+                    </p>
+                </div>
+
+                <div class="bg-white p-8 rounded-3xl border border-zinc-200 shadow-sm hover:shadow-md transition-shadow md:col-span-2">
+                    <span class="text-indigo-400 font-mono text-xs font-bold tracking-widest block mb-2">05 / RESPIRATORY</span>
+                    <h3 class="text-lg font-bold text-zinc-900 mb-3">ลดความเสี่ยงในการสำลัก (Aspiration)</h3>
+                    <p class="text-sm text-zinc-600 font-light leading-relaxed">
+                        <strong class="text-zinc-800 font-medium">ปัญหา:</strong> ภาวะกลืนลำบาก (Dysphagia) มักพบได้บ่อย หากนั่งในท่าห่อเหี่ยวหรือสไลด์ตัว จะยิ่งกดทับกะบังลมและหลอดลม ทำให้เสี่ยงต่อการสำลักอาหารลงปอดจนติดเชื้อ<br>
+                        <strong class="text-indigo-600 font-medium">การแก้ปัญหา:</strong> การปรับ <strong>"ความสูงพนักพิงและความลึกเบาะ"</strong> ให้สอดคล้องกับสรีระ จะช่วยจัดระเบียบโครงสร้างกระดูก (Postural Support) ให้ผู้ป่วยนั่งหลังตรงสมมาตร ช่วยเปิดทางเดินหายใจและระบบการกลืนให้ทำงานได้อย่างมีประสิทธิภาพ
+                    </p>
+                </div>
+            </div>
+
+            <div class="bg-indigo-900 rounded-3xl p-8 md:p-10 text-center shadow-lg relative overflow-hidden">
+                <div class="absolute -right-10 -top-10 w-40 h-40 bg-indigo-600 rounded-full blur-3xl opacity-50"></div>
+                <div class="absolute -left-10 -bottom-10 w-40 h-40 bg-blue-500 rounded-full blur-3xl opacity-30"></div>
+                <div class="relative z-10">
+                    <p class="text-base md:text-lg text-indigo-50 font-light leading-relaxed max-w-3xl mx-auto">
+                        "สำหรับผู้ป่วยสโตรก วีลแชร์ไม่ใช่แค่ยานพาหนะ แต่คือ <strong class="text-white font-semibold">กายอุปกรณ์ (Orthotic Device)</strong> ชิ้นสำคัญ การได้รับวีลแชร์ที่ขนาดพอดีสรีระ คือรากฐานสำคัญที่สุดที่จะทำให้ผู้ป่วยปลอดภัยจากภาวะแทรกซ้อน และพร้อมสำหรับการทำกายภาพบำบัดเพื่อกลับมาใช้ชีวิตได้อีกครั้ง"
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="problem-section" class="bg-zinc-100/70 py-24 px-6 border-b border-zinc-200">
+        <div class="container mx-auto max-w-6xl">
+            <div class="text-center mb-16 space-y-2">
+                <span class="text-xs font-bold tracking-widest text-red-600 uppercase bg-red-100 px-3 py-1 rounded-md">Secondary Complications</span>
+                <h2 class="text-3xl font-bold tracking-tight text-zinc-950">7 อันตรายเงียบ จากการเลือกใช้วีลแชร์ผิดสเปค</h2>
+                <p class="text-zinc-500 max-w-xl mx-auto font-light text-sm">การเลือกฟังก์ชันที่ไม่สอดคล้องกับพยาธิสภาพของโรคหลอดเลือดสมอง อาจก่อให้เกิดภาวะแทรกซ้อนที่รุนแรงต่อตัวผู้ป่วย</p>
+            </div>
+
+            <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+                <div class="bg-white p-6 rounded-2xl border border-zinc-200 hover:border-red-200 transition-all shadow-sm flex flex-col justify-between">
+                    <div>
+                        <span class="text-red-400 font-mono text-xs block mb-3 font-bold">01 / HEALTH</span>
+                        <h4 class="font-semibold text-zinc-900 mb-2">ปวดเมื่อยและเกิดแผลกดทับ</h4>
+                        <p class="text-xs text-zinc-500 leading-relaxed font-light">เบาะที่ไม่พอดีทำให้เกิดการกระจายแรงกดทับที่ไม่สมบูรณ์ เสี่ยงเกิดเนื้อตายบริเวณปุ่มกระดูกก้นกบและสะโพก</p>
+                    </div>
+                </div>
+                <div class="bg-white p-6 rounded-2xl border border-zinc-200 hover:border-red-200 transition-all shadow-sm flex flex-col justify-between">
+                    <div>
+                        <span class="text-red-400 font-mono text-xs block mb-3 font-bold">02 / ANATOMY</span>
+                        <h4 class="font-semibold text-zinc-900 mb-2">ปัญหากระดูกและกล้ามเนื้อ</h4>
+                        <p class="text-xs text-zinc-500 leading-relaxed font-light">ท่านั่งที่เอียงหรือห่อเหี่ยวเป็นเวลานานส่งผลให้กระดูกสันหลังผิดรูป กล้ามเนื้อฝั่งที่ปกติทำงานหนักจนอักเสบเรื้อรัง</p>
+                    </div>
+                </div>
+                <div class="bg-white p-6 rounded-2xl border border-zinc-200 hover:border-red-200 transition-all shadow-sm flex flex-col justify-between">
+                    <div>
+                        <span class="text-red-400 font-mono text-xs block mb-3 font-bold">03 / MOBILITY</span>
+                        <h4 class="font-semibold text-zinc-900 mb-2">การเคลื่อนไหวติดขัด</h4>
+                        <p class="text-xs text-zinc-500 leading-relaxed font-light">ตัวรถที่กว้างหรือหนักเกินสรีระ ทำให้ผู้ป่วยสูญเสียความสามารถในการควบคุมทิศทางหรือเข็นประคองตัวเอง</p>
+                    </div>
+                </div>
+                <div class="bg-white p-6 rounded-2xl border border-zinc-200 hover:border-red-200 transition-all shadow-sm flex flex-col justify-between">
+                    <div>
+                        <span class="text-red-400 font-mono text-xs block mb-3 font-bold">04 / SAFETY</span>
+                        <h4 class="font-semibold text-zinc-900 mb-2">ความเสี่ยงอุบัติเหตุพลิกคว่ำ</h4>
+                        <p class="text-xs text-zinc-500 leading-relaxed font-light">ศูนย์ถ่วงของรถที่ไม่ได้สัดส่วนกับน้ำหนักผู้ป่วย อาจทำให้รถหงายหลังขณะขึ้นทางลาดชันหรือเสียการทรงตัว</p>
+                    </div>
+                </div>
+                <div class="bg-white p-6 rounded-2xl border border-zinc-200 hover:border-red-200 transition-all shadow-sm flex flex-col justify-between">
+                    <div>
+                        <span class="text-red-400 font-mono text-xs block mb-3 font-bold">05 / PSYCHOLOGY</span>
+                        <h4 class="font-semibold text-zinc-900 mb-2">สูญเสียความมั่นใจและอิสรภาพ</h4>
+                        <p class="text-xs text-zinc-500 leading-relaxed font-light">เมื่อใช้วีลแชร์ที่ไม่สบาย ผู้ป่วยจะเริ่มปฏิเสธการทำกิจกรรม ลดการเข้าสังคม และต้องพึ่งพาผู้ดูแลอยู่ตลอดเวลา</p>
+                    </div>
+                </div>
+                <div class="bg-white p-6 rounded-2xl border border-zinc-200 hover:border-red-200 transition-all shadow-sm flex flex-col justify-between">
+                    <div>
+                        <span class="text-red-400 font-mono text-xs block mb-3 font-bold">06 / MENTAL</span>
+                        <h4 class="font-semibold text-zinc-900 mb-2">ภาวะซึมเศร้าจากการจำกัดพื้นที่</h4>
+                        <p class="text-xs text-zinc-500 leading-relaxed font-light">สภาพแวดล้อมที่หดหู่บวกกับการติดอยู่บนเก้าอี้ที่สร้างความเจ็บปวด ส่งผลเสียต่อสารเคมีในสมองและจิตใจโดยตรง</p>
+                    </div>
+                </div>
+                <div class="bg-white p-6 rounded-2xl border border-zinc-200 hover:border-red-200 transition-all shadow-sm md:col-span-2 lg:col-span-3 flex flex-col sm:flex-row sm:items-center justify-between gap-4">
+                    <div class="space-y-1">
+                        <span class="text-red-400 font-mono text-xs block font-bold mb-1">07 / FINANCE</span>
+                        <h4 class="font-semibold text-zinc-900 mb-2 sm:mb-0">ค่าใช้จ่ายบานปลายแฝง</h4>
+                    </div>
+                    <p class="text-xs text-zinc-500 max-w-xl font-light sm:text-right leading-relaxed">การซื้อวีลแชร์ที่ไม่มีคุณภาพมักตามมาด้วยค่าซ่อมบำรุงจุกจิก และที่เลวร้ายที่สุดคือค่าใช้จ่ายในการบำบัดรักษาโรคแทรกซ้อน เช่น การผ่าตัดรักษาแผลกดทับที่อาจสูงกว่าค่าวีลแชร์หลายเท่าตัว</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="selector-section" class="bg-indigo-50/50 py-24 px-6">
+        <div class="container mx-auto max-w-5xl">
+            <div class="text-center mb-12 space-y-2">
+                <span class="text-xs font-bold tracking-widest text-indigo-600 uppercase bg-white border border-indigo-200 px-3 py-1 rounded-md shadow-sm">Stroke Patient Matcher</span>
+                <h2 class="text-3xl font-bold tracking-tight text-zinc-950">วิเคราะห์ประเภทวีลแชร์ตามกลุ่มอาการสโตรก</h2>
+                <p class="text-zinc-500 max-w-xl mx-auto font-light text-sm">คัดกรองลักษณะพยาธิสภาพทางคลินิกและระดับการเคลื่อนไหว เพื่อรับการแนะนำสเปครถเข็น</p>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-4 mb-8 text-left">
+                <button onclick="switchCondition('group1')" id="btn-group1" class="p-6 rounded-2xl text-left border-2 border-zinc-900 bg-white shadow-sm transition-all group relative">
+                    <div class="w-2 h-2 rounded-full bg-indigo-600 absolute top-4 right-4" id="dot-group1"></div>
+                    <p class="font-semibold text-zinc-900 text-sm md:text-base">TIA (สมองขาดเลือดชั่วคราว)</p>
+                    <p class="text-xs text-zinc-500 mt-2 font-light">เดินได้บ้างแต่ไม่ไกล (Walk but not far)</p>
+                </button>
+                <button onclick="switchCondition('group2')" id="btn-group2" class="p-6 rounded-2xl text-left border-2 border-zinc-100 bg-white hover:border-zinc-200 transition-all shadow-sm group relative">
+                    <div class="w-2 h-2 rounded-full bg-transparent absolute top-4 right-4" id="dot-group2"></div>
+                    <p class="font-semibold text-zinc-600 text-sm md:text-base">Ischemic (หลอดเลือดตีบ/อุดตัน)</p>
+                    <p class="text-xs text-zinc-500 mt-2 font-light">เดินไม่ได้ แต่นั่งทรงตัวได้ (Sit steadily)</p>
+                </button>
+                <button onclick="switchCondition('group3')" id="btn-group3" class="p-6 rounded-2xl text-left border-2 border-zinc-100 bg-white hover:border-zinc-200 transition-all shadow-sm group relative">
+                    <div class="w-2 h-2 rounded-full bg-transparent absolute top-4 right-4" id="dot-group3"></div>
+                    <p class="font-semibold text-zinc-600 text-sm md:text-base">Hemorrhagic (หลอดเลือดแตก)</p>
+                    <p class="text-xs text-zinc-500 mt-2 font-light">เดินไม่ได้และนั่งไม่ได้ (Cannot walk/sit)</p>
+                </button>
+            </div>
+
+            <div class="bg-white rounded-3xl border border-zinc-200 p-8 md:p-12 shadow-[0_10px_40px_rgba(0,0,0,0.03)] grid md:grid-cols-12 gap-8 text-left">
+                <div class="md:col-span-7 space-y-4">
+                    <div class="space-y-1.5">
+                        <span class="text-[11px] font-bold uppercase tracking-wider text-indigo-600 bg-indigo-50 px-2.5 py-1 rounded-md border border-indigo-100">ประเมินผลลัพธ์ทางการแพทย์</span>
+                        <h3 class="text-xl md:text-2xl font-bold tracking-tight text-zinc-950 mt-2" id="wheelchair-title">วีลแชร์น้ำหนักเบาล้อใหญ่</h3>
+                    </div>
+                    <p class="text-sm md:text-base text-zinc-500 font-light leading-relaxed text-justify" id="wheelchair-desc">เหมาะสำหรับผู้ป่วยสโตรกที่กล้ามเนื้อฝั่งปกติยังแข็งแรง</p>
+                </div>
+                <div class="md:col-span-5 bg-zinc-50/70 p-6 md:p-8 rounded-2xl border border-zinc-100 flex flex-col justify-center">
+                    <p class="text-xs font-semibold tracking-wider text-zinc-400 uppercase mb-4 flex items-center gap-1.5">
+                        <span class="w-1.5 h-1.5 rounded-full bg-emerald-500"></span> Essential Checklist
+                    </p>
+                    <ul class="space-y-3.5 text-xs md:text-sm text-zinc-600 font-light" id="wheelchair-features">
+                    </ul>
+                </div>
+            </div>
+
+            <div class="mt-6 bg-zinc-900 text-white rounded-2xl p-6 flex gap-4 items-start shadow-sm text-left">
+                <span class="text-2xl mt-0.5">💡</span>
+                <div class="space-y-1">
+                    <h5 class="font-medium text-zinc-100 text-sm md:text-base">คำแนะนำเพิ่มเติมสำหรับผู้ป่วยสโตรก: เฝ้าระวังภาวะข้อไหล่หลุดหลวม (Shoulder Subluxation)</h5>
+                    <p class="text-xs text-zinc-400 leading-relaxed font-light">สำหรับผู้ป่วยกลุ่มสโตรกที่มีอาการอ่อนแรงซีกใดซีกหนึ่ง แขนข้างที่อ่อนแรงมักจะตกลงตามแรงโน้มถ่วง หากปล่อยให้ห้อยอย่างอิสระบ่อยครั้ง เส้นเอ็นจะยืดออกและทำให้เกิดข้อไหล่เคลื่อนหลุดหลวมจนปวดทรมานในอนาคต ดังนั้นไม่ว่าจะเลือกใช้วีลแชร์ประเภทใด <strong class="text-indigo-400 font-medium">จำเป็นต้องติดตั้งแผ่นพยุงรองแขนหรือใช้หมอนรองแขน (Arm trough) ไว้ที่ที่พักแขนฝั่งที่อ่อนแรงเสมอ</strong> เพื่อรักษาระดับข้อต่อให้อยู่ในแนวระนาบที่ถูกต้อง</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="measurement-guide" class="bg-indigo-50/30 py-24 px-6 border-b border-indigo-100">
+        <div class="container mx-auto max-w-6xl">
+            <div class="text-center mb-16 space-y-3">
+                <span class="inline-block text-xs font-bold tracking-widest text-indigo-600 uppercase bg-indigo-100/80 px-4 py-1.5 rounded-full shadow-sm border border-indigo-200">Clinical Guidelines</span>
+                <h2 class="text-3xl md:text-4xl font-bold tracking-tight text-zinc-950">หลักการวัดขนาดร่างกายสำหรับวีลแชร์</h2>
+                <div class="max-w-2xl mx-auto bg-white/80 p-5 rounded-2xl border border-white shadow-sm mt-4 text-left">
+                    <p class="text-zinc-600 font-light text-sm leading-relaxed">
+                        ข้อกำหนดสำคัญก่อนวัด: การวัดทุกจุดต้องทำขณะผู้ป่วย "นั่งบนพื้นผิวที่เรียบ แข็ง และนั่งตัวตรงที่สุด" โดยให้ข้อสะโพก เข่า และข้อเท้า งอตั้งฉากทำมุม 90 องศา (กฎ 90-90-90)
+                    </p>
+                </div>
+            </div>
+
+            <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6 text-left">
+                <div class="bg-white p-6 lg:p-8 rounded-[2rem] border border-indigo-100 shadow-sm hover:-translate-y-1 transition-all duration-300 flex flex-col justify-between">
+                    <div>
+                        <div class="flex items-center gap-4 mb-5">
+                            <div class="w-12 h-12 shrink-0 rounded-2xl bg-gradient-to-br from-indigo-500 to-violet-600 text-white flex items-center justify-center font-black text-xl shadow-lg">1</div>
+                            <h3 class="font-bold text-zinc-900 text-lg leading-tight">ความกว้างสะโพก<br><span class="text-sm text-indigo-500 font-medium font-mono">Hip Width</span></h3>
+                        </div>
+                        <p class="text-sm text-zinc-600 font-light leading-relaxed mb-4">
+                            <strong>วิธีวัด:</strong> ใช้สายวัดวัดส่วนที่กว้างที่สุดของสะโพกหรือโคนขาด้านนอกในแนวนอนขณะที่คนไข้นั่งตรงราบกับเบาะ 
+                        </p>
+                    </div>
+                    <div class="bg-indigo-50/50 p-4 rounded-xl border border-indigo-50/80 mt-auto">
+                        <p class="text-xs text-zinc-600 font-light leading-relaxed">
+                            <strong class="text-indigo-600">การคำนวณเบาะนั่ง:</strong> นำระยะที่วัดได้จริง <strong>บวกเพิ่มอีก 5 ซม. (2 นิ้ว)</strong> เพื่อเผื่อพื้นที่เครื่องแต่งกายและป้องกันผิวสัมผัสเสียดสีกับโครงเหล็กด้านข้าง ซึ่งเป็นสาเหตุหลักของการเกิดแผลกดทับที่ปุ่มกระดูกต้นขา
+                        </p>
+                    </div>
+                </div>
+
+                <div class="bg-white p-6 lg:p-8 rounded-[2rem] border border-indigo-100 shadow-sm hover:-translate-y-1 transition-all duration-300 flex flex-col justify-between">
+                    <div>
+                        <div class="flex items-center gap-4 mb-5">
+                            <div class="w-12 h-12 shrink-0 rounded-2xl bg-gradient-to-br from-indigo-500 to-violet-600 text-white flex items-center justify-center font-black text-xl shadow-lg">2</div>
+                            <h3 class="font-bold text-zinc-900 text-lg leading-tight">ความลึกที่นั่ง<br><span class="text-sm text-indigo-500 font-medium font-mono">Seat Depth</span></h3>
+                        </div>
+                        <p class="text-sm text-zinc-600 font-light leading-relaxed mb-4">
+                            <strong>วิธีวัด:</strong> วัดจากจุดหลังสุดของสะโพก (แผ่นหลังแนบพนักพิง) ทอดยาวตามแนวต้นขาด้านบนจนถึงจุดตัดบริเวณรอยพับข้อพับหลังหัวเข่า
+                        </p>
+                    </div>
+                    <div class="bg-indigo-50/50 p-4 rounded-xl border border-indigo-50/80 mt-auto">
+                        <p class="text-xs text-zinc-600 font-light leading-relaxed">
+                            <strong class="text-indigo-600">การคำนวณเบาะนั่ง:</strong> นำระยะที่วัดได้จริง <strong>ลบออก 5 ซม. (2 นิ้ว)</strong> เพื่อป้องกันไม่ให้ขอบหน้าของเบาะวีลแชร์กดเบียดเส้นเลือดและระบบประสาทใต้ข้อพับเข่า ซึ่งอาจส่งผลให้เนื้อเยื่อส่วนปลายชาและขัดขวางการไหลเวียนเลือด
+                        </p>
+                    </div>
+                </div>
+
+                <div class="bg-white p-6 lg:p-8 rounded-[2rem] border border-indigo-100 shadow-sm hover:-translate-y-1 transition-all duration-300 flex flex-col justify-between">
+                    <div>
+                        <div class="flex items-center gap-4 mb-5">
+                            <div class="w-12 h-12 shrink-0 rounded-2xl bg-gradient-to-br from-indigo-500 to-violet-600 text-white flex items-center justify-center font-black text-xl shadow-lg">3</div>
+                            <h3 class="font-bold text-zinc-900 text-lg leading-tight">ความยาวน่อง<br><span class="text-sm text-indigo-500 font-medium font-mono">Calf Length</span></h3>
+                        </div>
+                        <p class="text-sm text-zinc-600 font-light leading-relaxed mb-4">
+                            <strong>วิธีวัด:</strong> วัดตั้งฉากจากบริเวณข้อพับใต้หัวเข่าด้านหลัง ลากสายวัดดิ่งตรงลงมาตามแนวน่องขาจนถึงสิ้นสุดใต้ฐานส้นเท้าของผู้ป่วย
+                        </p>
+                    </div>
+                    <div class="bg-indigo-50/50 p-4 rounded-xl border border-indigo-50/80 mt-auto">
+                        <p class="text-xs text-zinc-600 font-light leading-relaxed">
+                            <strong class="text-indigo-600">การหาระดับที่พักเท้า:</strong> ความยาวจุดนี้ใช้กำหนดระยะความสูงของแผ่นพักเท้า โดยต้องคำนึงถึงขนาดความหนาของเบาะรองนั่ง (Cushion) ร่วมด้วย เพื่อให้ฝ่าเท้าวางราบสนิทโดยที่หัวเข่าไม่งอสูงเกินไป
+                        </p>
+                    </div>
+                </div>
+
+                <div class="bg-white p-6 lg:p-8 rounded-[2rem] border border-indigo-100 shadow-sm hover:-translate-y-1 transition-all duration-300 flex flex-col justify-between">
+                    <div>
+                        <div class="flex items-center gap-4 mb-5">
+                            <div class="w-12 h-12 shrink-0 rounded-2xl bg-gradient-to-br from-indigo-500 to-violet-600 text-white flex items-center justify-center font-black text-xl shadow-lg">4</div>
+                            <h3 class="font-bold text-zinc-900 text-lg leading-tight">ความสูงพนักพิง<br><span class="text-sm text-indigo-500 font-medium font-mono">Backrest Height</span></h3>
+                        </div>
+                        <p class="text-sm text-zinc-600 font-light leading-relaxed mb-4">
+                            <strong>วิธีวัด:</strong> วัดในแนวตั้งจากพื้นผิวเบาะรองนั่งไล่ขึ้นไปตามแนวกระดูกสันหลังจนถึงระดับรักแร้ หรือระดับใต้กระดูกสะบักหลัง
+                        </p>
+                    </div>
+                    <div class="bg-indigo-50/50 p-4 rounded-xl border border-indigo-50/80 mt-auto">
+                        <p class="text-xs text-zinc-600 font-light leading-relaxed">
+                            <strong class="text-indigo-600">การประเมินความสูง:</strong> คนไข้สโตรกที่ควบคุมลำตัวได้ดีให้ตั้งระดับต่ำกว่าสะบักเล็กน้อยเพื่อความคล่องตัวในการเอื้อมเข็น แต่หากผู้ป่วยอ่อนแรงรุนแรงจำเป็นต้องเลือกพนักพิงทรงสูงเพื่อพยุงแนวกระดูกไม่ให้โอนเอนทรุดตัว
+                        </p>
+                    </div>
+                </div>
+                
+                <div class="bg-white p-6 lg:p-8 rounded-[2rem] border border-indigo-100 shadow-sm hover:-translate-y-1 transition-all duration-300 md:col-span-2 flex flex-col justify-between">
+                    <div>
+                        <div class="flex items-center gap-4 mb-5">
+                            <div class="w-12 h-12 shrink-0 rounded-2xl bg-gradient-to-br from-indigo-500 to-violet-600 text-white flex items-center justify-center font-black text-xl shadow-lg">5</div>
+                            <h3 class="font-bold text-zinc-900 text-lg leading-tight">ระดับความสูงข้อศอก<br><span class="text-sm text-indigo-500 font-medium font-mono">Elbow Height</span></h3>
+                        </div>
+                        <p class="text-sm text-zinc-600 font-light leading-relaxed mb-4">
+                            <strong>วิธีวัด:</strong> จัดท่าผู้ป่วยให้ปล่อยไหล่สบาย งอข้อศอกทำมุมตั้งฉาก 90 องศา แนบชิดขนาบลำตัว จากนั้นวัดระยะในแนวดิ่งจากพื้นผิวเบาะนั่งขึ้นมาจนถึงจุดปลายสุดของปุ่มกระดูกข้อศอก
+                        </p>
+                    </div>
+                    <div class="bg-indigo-50/50 p-4 rounded-xl border border-indigo-50/80 mt-auto">
+                        <p class="text-xs text-indigo-600 font-medium leading-relaxed">
+                            <strong>สูตรคำนวณที่วางแขน:</strong> นำค่าระดับที่วัดได้จริง <strong>บวกเพิ่มอีก 2.5 ซม. (1 นิ้ว)</strong> เพื่อตั้งเป็นเกณฑ์ความสูงของแผ่นรองพักแขน (Armrest) ซึ่งสำคัญอย่างยิ่งในการรองรับน้ำหนักและป้องกันภาวะแทรกซ้อนข้อไหล่หลุดหลวมในฝั่งขวาหรือซ้ายที่มีอาการทุพพลภาพ อัมพฤกษ์ อัมพาตครึ่งซีก
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="customizer-section" class="bg-zinc-950 text-zinc-50 py-24 px-6 relative">
+        <div class="container mx-auto max-w-7xl">
+            <div class="text-center mb-16 space-y-2">
+                <span class="text-xs font-bold tracking-widest text-indigo-400 uppercase bg-zinc-900 border border-indigo-900/50 px-3 py-1 rounded-md shadow-sm">Clinical Measurement</span>
+                <h2 class="text-3xl font-bold tracking-tight">ระบบคำนวณสรีระเพื่อเทียบขนาดมาตรฐาน</h2>
+                <p class="text-zinc-400 max-w-xl mx-auto font-light text-sm">ประมวลผลข้อมูลทางกายวิภาค</p>
+            </div>
+
+            <div class="bg-zinc-900 border border-zinc-800 rounded-3xl p-6 md:p-10 grid lg:grid-cols-12 gap-8 items-stretch shadow-2xl text-left">
+                <div class="lg:col-span-5 flex flex-col justify-between space-y-6">
+                    <div class="space-y-6">
+                        <h3 class="text-base font-medium text-indigo-400 border-b border-zinc-800 pb-2 flex items-center gap-2">ระบุขนาดร่างกาย (เซนติเมตร)</h3>
+                        <div class="grid grid-cols-2 gap-4">
+                            <div class="space-y-1">
+                                <label class="block text-[11px] font-medium text-zinc-400">1. ความกว้างของสะโพก</label>
+                                <input type="number" id="meas-a" placeholder="เช่น 40" class="w-full bg-zinc-950 border border-zinc-800 p-3 rounded-xl text-sm text-white focus:outline-none focus:border-indigo-500 transition-all">
+                            </div>
+                            <div class="space-y-1">
+                                <label class="block text-[11px] font-medium text-zinc-400">2. ความลึก (ก้นถึงข้อพับ)</label>
+                                <input type="number" id="meas-b" placeholder="เช่น 45" class="w-full bg-zinc-950 border border-zinc-800 p-3 rounded-xl text-sm text-white focus:outline-none focus:border-indigo-500 transition-all">
+                            </div>
+                            <div class="space-y-1">
+                                <label class="block text-[11px] font-medium text-zinc-400">3. ความยาวน่อง (ข้อพับถึงส้น)</label>
+                                <input type="number" id="meas-c" placeholder="เช่น 42" class="w-full bg-zinc-950 border border-zinc-800 p-3 rounded-xl text-sm text-white focus:outline-none focus:border-indigo-500 transition-all">
+                            </div>
+                            <div class="space-y-1">
+                                <label class="block text-[11px] font-medium text-zinc-400">การทรงตัว (Trunk Control)</label>
+                                <select id="trunk-control" class="w-full bg-zinc-950 border border-zinc-800 p-3 rounded-xl text-sm text-white focus:outline-none focus:border-indigo-500 transition-all appearance-none cursor-pointer">
+                                    <option value="good">ทรงตัวได้ดี (Good)</option>
+                                    <option value="poor">ทรงตัวไม่ดี (Poor)</option>
+                                </select>
+                            </div>
+                            <div class="space-y-1">
+                                <label class="block text-[11px] font-medium text-zinc-400">4.1 ระยะที่นั่งถึงชายโครง</label>
+                                <input type="number" id="meas-d" placeholder="เช่น 25" class="w-full bg-zinc-950 border border-zinc-800 p-3 rounded-xl text-sm text-white focus:outline-none focus:border-indigo-500 transition-all">
+                            </div>
+                            <div class="space-y-1">
+                                <label class="block text-[11px] font-medium text-zinc-400">4.2 ระยะที่นั่งถึงฐานสะบัก</label>
+                                <input type="number" id="meas-e" placeholder="เช่น 40" class="w-full bg-zinc-950 border border-zinc-800 p-3 rounded-xl text-sm text-white focus:outline-none focus:border-indigo-500 transition-all">
+                            </div>
+                        </div>
+
+                        <h3 class="text-base font-medium text-indigo-400 border-b border-zinc-800 pb-2 pt-4">เลือกฟังก์ชันโครงสร้าง</h3>
+                        <div class="grid grid-cols-2 gap-4">
+                            <div class="space-y-1.5">
+                                <label class="block text-[11px] font-medium text-zinc-400">ที่เท้าแขน (Armrest)</label>
+                                <select id="form-armrest" onchange="updateVisuals()" class="w-full bg-zinc-950 border border-zinc-800 p-2.5 rounded-xl text-xs text-white focus:outline-none focus:border-indigo-500 appearance-none">
+                                    <option value="fixed">ยึดติดแน่นมาตรฐาน</option>
+                                    <option value="removable">สวิงเปิดข้าง / ถอดได้</option>
+                                </select>
+                            </div>
+                            <div class="space-y-1.5">
+                                <label class="block text-[11px] font-medium text-zinc-400">ที่พักเท้า (Footrest)</label>
+                                <select id="form-footrest" onchange="updateVisuals()" class="w-full bg-zinc-950 border border-zinc-800 p-2.5 rounded-xl text-xs text-white focus:outline-none focus:border-indigo-500 appearance-none">
+                                    <option value="fixed">โครงยึดถาวร</option>
+                                    <option value="detachable">พับหลบ / ถอดแยกได้</option>
+                                </select>
+                            </div>
+                            <div class="space-y-1.5">
+                                <label class="block text-[11px] font-medium text-zinc-400">ชนิดเบาะรองนั่ง</label>
+                                <select id="form-cushion" onchange="updateVisuals()" class="w-full bg-zinc-950 border border-zinc-800 p-2.5 rounded-xl text-xs text-white focus:outline-none focus:border-indigo-500 appearance-none">
+                                    <option value="air">เบาะลม (ลดแรงกดทับ)</option>
+                                    <option value="gel">เบาะเจลไฮบริด (ลดร้อน)</option>
+                                    <option value="foam">โฟมยางหนา (บล็อกทรง)</option>
+                                    <option value="memory">เมมโมรี่โฟม (โอบสรีระนุ่ม)</option>
+                                </select>
+                            </div>
+                            <div class="space-y-1.5">
+                                <label class="block text-[11px] font-medium text-zinc-400">ชนิดล้อยาง</label>
+                                <select id="form-tire" class="w-full bg-zinc-950 border border-zinc-800 p-2.5 rounded-xl text-xs text-white focus:outline-none focus:border-indigo-500 appearance-none">
+                                    <option value="solid">ยางตัน (ดูแลรักษาง่าย)</option>
+                                    <option value="pneumatic">ยางเติมลม (ซับแรงกระแทก)</option>
+                                </select>
+                            </div>
+                            <div class="space-y-1.5">
+                                <label class="block text-[11px] font-medium text-zinc-400">พนักพิงหลัง (Backrest)</label>
+                                <select id="form-recline" onchange="updateVisuals()" class="w-full bg-zinc-950 border border-zinc-800 p-2.5 rounded-xl text-xs text-white focus:outline-none focus:border-indigo-500 appearance-none">
+                                    <option value="fixed">มาตรฐาน (ตั้งตรง)</option>
+                                    <option value="reclining">ปรับเอนหลังได้ (Recline)</option>
+                                </select>
+                            </div>
+                            <div class="space-y-1.5">
+                                <label class="block text-[11px] font-medium text-zinc-400">ฟังก์ชันที่พักเท้า</label>
+                                <select id="form-elevate" onchange="updateVisuals()" class="w-full bg-zinc-950 border border-zinc-800 p-2.5 rounded-xl text-xs text-white focus:outline-none focus:border-indigo-500 appearance-none">
+                                    <option value="none">ระดับปกติ (ห้อยขา)</option>
+                                    <option value="yes">ปรับยกเอนขาขึ้นได้</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="grid grid-cols-3 gap-3 pt-3">
+                        <button onclick="resetCalculator()" class="col-span-1 bg-zinc-800 hover:bg-zinc-700 text-zinc-300 font-medium text-sm py-4 rounded-xl shadow-lg transition-all border border-zinc-700">
+                            ล้างข้อมูล
+                        </button>
+                        <button onclick="calculateWheelchair()" class="col-span-2 bg-indigo-600 text-white font-medium text-sm py-4 rounded-xl hover:bg-indigo-700 transition-all shadow-lg active:scale-95">
+                            วิเคราะห์สเปค
+                        </button>
+                    </div>
+                </div>
+
+                <div class="lg:col-span-7 flex flex-col space-y-6">
+                    <div class="flex justify-between items-center z-10 relative">
+                        <div class="space-y-0.5">
+                            <h3 class="text-sm font-semibold tracking-wide text-zinc-100 uppercase">Architecture Blueprint Preview</h3>
+                            <p class="text-xs text-zinc-500 font-light">• HIGH-DETAIL SVG RENDER</p>
+                        </div>
+                        <span id="visual-indicator" class="text-xs font-medium text-indigo-400 bg-indigo-950 border border-indigo-900/50 px-3 py-1.5 rounded-full">เบาะลม (ลดแรงกดทับ)</span>
+                    </div>
+
+                    <div class="bg-zinc-900/50 rounded-2xl border border-zinc-800/80 flex justify-center items-center h-[400px] relative overflow-hidden shadow-inner">
+                        <div class="absolute inset-0 bg-[linear-gradient(to_right,#27272a_1px,transparent_1px),linear-gradient(to_bottom,#27272a_1px,transparent_1px)] bg-[size:24px_24px] opacity-40"></div>
+                        
+                        <svg class="absolute inset-0 w-full h-full pointer-events-none opacity-40" xmlns="http://www.w3.org/2000/svg">
+                            <g stroke="#3B82F6" stroke-width="1.5" fill="none">
+                                <path d="M 20 40 L 20 20 L 40 20"/>
+                                <path d="M calc(100% - 40px) 20 L calc(100% - 20px) 20 L calc(100% - 20px) 40"/>
+                                <path d="M 20 calc(100% - 40px) L 20 calc(100% - 20px) L 40 calc(100% - 20px)"/>
+                                <path d="M calc(100% - 40px) calc(100% - 20px) L calc(100% - 20px) calc(100% - 20px) L calc(100% - 20px) calc(100% - 40px)"/>
+                            </g>
+                        </svg>
+
+                        <svg class="w-full h-full max-w-[400px] max-h-[400px] drop-shadow-2xl z-10" viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg">
+                            <g stroke="#3F3F46" stroke-width="0.5" stroke-dasharray="2,2" opacity="0.6">
+                                <line x1="0" y1="130" x2="200" y2="130"/>
+                                <line x1="65" y1="0" x2="65" y2="200"/>
+                            </g>
+
+                            <path d="M 45 120 L 115 120" stroke="#71717A" stroke-width="5" stroke-linecap="round" fill="none"/>
+                            <path d="M 110 120 L 130 150 L 130 162" stroke="#71717A" stroke-width="4" stroke-linejoin="round" fill="none"/>
+                            
+                            <g id="svg-backrest-group" style="transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1); transform-origin: 50px 120px;">
+                                <path d="M 50 125 L 50 45" stroke="#71717A" stroke-width="5" stroke-linecap="round" fill="none"/>
+                                <path d="M 40 45 L 50 45" stroke="#18181B" stroke-width="7" stroke-linecap="round" fill="none"/>
+                                <path d="M 42 45 L 48 45" stroke="#3F3F46" stroke-width="3" stroke-linecap="round" fill="none"/>
+                                <rect x="46.5" y="55" width="7" height="60" rx="3.5" fill="#3F3F46"/>
+                                <line x1="47" y1="65" x2="53" y2="65" stroke="#18181B" stroke-width="1.5"/>
+                                <line x1="47" y1="75" x2="53" y2="75" stroke="#18181B" stroke-width="1.5"/>
+                                <line x1="47" y1="85" x2="53" y2="85" stroke="#18181B" stroke-width="1.5"/>
+                                <line x1="47" y1="95" x2="53" y2="95" stroke="#18181B" stroke-width="1.5"/>
+                                <line x1="47" y1="105" x2="53" y2="105" stroke="#18181B" stroke-width="1.5"/>
+                                <circle cx="50" cy="120" r="3.5" fill="#18181B"/>
+                                <circle cx="50" cy="120" r="1.5" fill="#A1A1AA"/>
+                            </g>
+
+                            <g id="svg-seat-group">
+                                <rect x="52" y="113" width="62" height="6" rx="2" fill="#27272A"/>
+                                <rect x="52" y="104" width="62" height="9" rx="3" fill="#4F46E5" id="svg-seat-main" style="transition: fill 0.3s;"/>
+                                <rect x="53" y="104" width="60" height="2" rx="1" fill="#818CF8" id="svg-seat-top" style="transition: fill 0.3s;"/>
+                                <path d="M57 104 L57 113 M62 104 L62 113 M67 104 L67 113 M72 104 L72 113 M77 104 L77 113 M82 104 L82 113 M87 104 L87 113 M92 104 L92 113 M97 104 L97 113 M102 104 L102 113 M107 104 L107 113" stroke="#000000" stroke-width="0.5" opacity="0.2"/>
+                            </g>
+
+                            <g id="svg-footrest-group" style="transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1); transform-origin: 110px 120px;">
+                                <path d="M 110 120 L 122 145" stroke="#71717A" stroke-width="5" stroke-linecap="round" fill="none"/>
+                                <path d="M 120 141 L 132 166" stroke="#A1A1AA" stroke-width="3.5" stroke-linecap="round" fill="none"/>
+                                <path d="M 113 135 L 121 131" stroke="#3F3F46" stroke-width="6" stroke-linecap="round" fill="none"/>
+                                <polygon points="128,166 150,166 146,172 125,172" fill="#27272A"/>
+                                <polygon points="129,166 149,166 146,168 128,168" fill="#52525B"/>
+                                <circle cx="110" cy="120" r="3.5" fill="#18181B"/>
+                                <circle cx="110" cy="120" r="1.5" fill="#E4E4E7"/>
+                            </g>
+
+                            <g id="svg-front-wheel">
+                                <circle cx="130" cy="162" r="12" stroke="#18181B" stroke-width="4.5" fill="none"/> 
+                                <circle cx="130" cy="162" r="9" stroke="#71717A" stroke-width="2" fill="none"/> 
+                                <path d="M 130 162 L 130 153 M 130 162 L 122 166 M 130 162 L 138 166" stroke="#A1A1AA" stroke-width="1.5"/>
+                                <circle cx="130" cy="162" r="3" fill="#27272A"/> 
+                            </g>
+
+                            <g id="svg-rear-wheel">
+                                <circle cx="65" cy="130" r="42" stroke="#18181B" stroke-width="6" fill="none"/>
+                                <circle cx="65" cy="130" r="39" stroke="#3F3F46" stroke-width="1.5" fill="none"/>
+                                <circle cx="65" cy="130" r="33" stroke="#D4D4D8" stroke-width="2.5" fill="none" opacity="0.9"/>
+                                <path d="M 65 97 L 65 93 M 98 130 L 102 130 M 65 163 L 65 167 M 32 130 L 28 130" stroke="#A1A1AA" stroke-width="2.5" stroke-linecap="round"/>
+                                
+                                <g stroke="#71717A" stroke-width="1" opacity="0.7">
+                                    <line x1="65" y1="92" x2="65" y2="168"/>
+                                    <line x1="27" y1="130" x2="103" y2="130"/>
+                                    <line x1="38" y1="103" x2="92" y2="157"/>
+                                    <line x1="92" y1="103" x2="38" y2="157"/>
+                                    <line x1="46" y1="97" x2="84" y2="163"/>
+                                    <line x1="84" y1="97" x2="46" y2="163"/>
+                                    <line x1="97" y1="111" x2="33" y2="149"/>
+                                    <line x1="33" y1="111" x2="97" y2="149"/>
+                                </g>
+                                
+                                <circle cx="65" cy="130" r="8" fill="#18181B"/>
+                                <circle cx="65" cy="130" r="5" fill="#3F3F46"/>
+                                <circle cx="65" cy="130" r="2.5" fill="#3B82F6"/>
+                            </g>
+
+                            <g id="svg-armrest-group" style="transition: opacity 0.4s cubic-bezier(0.4, 0, 0.2, 1);">
+                                <path d="M 55 92 L 105 92 L 105 110 L 85 118 L 55 118 Z" fill="#18181B" opacity="0.3"/>
+                                <path d="M 55 92 L 105 92 L 105 110 L 85 118 L 55 118 Z" stroke="#3F3F46" stroke-width="1" fill="none" opacity="0.6"/>
+                                <path d="M 55 113 L 55 86 M 105 110 L 105 86" stroke="#71717A" stroke-width="3" stroke-linecap="round" fill="none"/>
+                                <rect x="49" y="81" width="62" height="6" rx="2" fill="#18181B"/>
+                                <rect x="50" y="77" width="60" height="5" rx="2" fill="#3F3F46"/>
+                                <rect x="52" y="78" width="56" height="1.5" rx="0.5" fill="#71717A"/>
+                            </g>
+                        </svg>
+                        
+                        <div class="absolute bottom-4 left-5 text-[10px] text-zinc-500 font-mono space-y-0.5 tracking-wider z-20 bg-zinc-900/80 px-3 py-2 rounded-lg border border-zinc-800 backdrop-blur-sm">
+                            <p id="lbl-back-status">• MODULE-BACK: UPRIGHT</p>
+                            <p id="lbl-arm-status">• MODULE-ARM: LOCKED</p>
+                            <p id="lbl-foot-status">• MODULE-FOOT: LOCKED</p>
+                        </div>
+                    </div>
+
+                    <div id="result-box" class="space-y-3 hidden animate-fadeIn flex-grow flex flex-col mt-2">
+                        <div class="bg-zinc-900 p-6 rounded-2xl border border-zinc-800 space-y-3 text-xs md:text-sm shadow-lg">
+                            <div class="bg-indigo-950/30 border border-indigo-900/50 p-5 rounded-xl flex items-center justify-between mb-4">
+                                <div>
+                                    <p class="text-indigo-400 font-bold mb-1.5 text-base">ไซส์วีลแชร์มาตรฐาน (Standard Size)</p>
+                                    <p class="text-zinc-400 text-xs font-light">ประมวลผลจากข้อมูลที่กรอกเพื่อหาขนาดที่ปลอดภัย</p>
+                                </div>
+                                <div class="text-4xl font-extrabold text-white tracking-widest bg-zinc-950 px-6 py-3 rounded-2xl border border-zinc-800 shadow-inner" id="res-size-std">M</div>
+                            </div>
+                            <div class="grid md:grid-cols-2 gap-x-6 gap-y-3 pt-2 text-left">
+                                <p class="text-zinc-400 flex justify-between border-b border-zinc-800/50 pb-2.5">
+                                    <span>ความกว้าง (Seat Width):</span> 
+                                    <span class="text-zinc-100 font-medium"><span id="res-width" class="text-emerald-400 font-bold text-base">--</span> ซม.</span>
+                                </p>
+                                <p class="text-zinc-400 flex justify-between border-b border-zinc-800/50 pb-2.5">
+                                    <span>ความลึก (Seat Depth):</span> 
+                                    <span class="text-zinc-100 font-medium"><span id="res-depth">--</span> ซม.</span>
+                                </p>
+                                <p class="text-zinc-400 flex justify-between border-b border-zinc-800/50 pb-2.5 md:border-none md:pb-0">
+                                    <span>ความยาวน่อง (Footrest):</span> 
+                                    <span class="text-zinc-100 font-medium"><span id="res-foot">--</span> ซม.</span>
+                                </p>
+                                <p class="text-zinc-400 flex justify-between pb-1 md:pb-0">
+                                    <span>ความสูงพนักพิง (Backrest):</span> 
+                                    <span class="text-zinc-100 font-medium"><span id="res-back">--</span> ซม.</span>
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer class="py-12 bg-zinc-50 text-center border-t border-zinc-200">
+        <p class="text-zinc-400 text-sm font-light">© 2026 StrokeWheelCare - ระบบวิเคราะห์และออกแบบวีลแชร์อัจฉริยะส่วนบุคคล</p>
+    </footer>
+
+    <script>
+        const conditionData = {
+            group1: {
+                title: "วีลแชร์น้ำหนักเบาล้อใหญ่ (Manual Wheelchair สำหรับ Hemi-propulsion)",
+                desc: "เหมาะสำหรับผู้ป่วยสโตรกที่กล้ามเนื้อฝั่งปกติยังแข็งแรง การใช้รถเข็นล้อใหญ่ที่ระดับความสูงเบาะพอดีกับช่วงขา จะเปิดโอกาสให้ผู้ป่วยได้ออกกำลังกล้ามเนื้อ โดยใช้ <strong>\"มือข้างดีประคองล้อ\"</strong> และ <strong>\"เท้าข้างดีช่วยไถพื้น\"</strong> พารถเคลื่อนที่ไปข้างหน้า เป็นการกระตุ้นประสาทและช่วยฟื้นฟูร่างกายไปในตัว",
+                features: [
+                    "<strong>ความสูงเบาะนั่งต่ำพิเศษ:</strong> เพื่อให้ฝ่าเท้าข้างที่ปกติของผู้ป่วยสามารถวางราบสัมผัสและไถพื้นได้อย่างมั่นคงปลอดภัย",
+                    "<strong>โครงสร้างอลูมิเนียมน้ำหนักเบา:</strong> เอื้ออำนวยให้ผู้ป่วยสามารถควบคุมรถและขับเคลื่อนด้วยกำลังแขนเพียงข้างเดียวได้โดยไม่ล้า",
+                    "<strong>รูปทรงเบาะกระชับสรีระ:</strong> เสริมวัสดุกันเอียงข้างตัวเพื่อบล็อกตำแหน่งสะโพกไม่ให้ทรุดเทไปด้านที่อ่อนแรง"
+                ]
+            },
+            group2: {
+                title: "วีลแชร์ปรับเอนนอนสรีรวิทยา (Tilt-in-Space & Reclining Wheelchair)",
+                desc: "ออกแบบมาโดยเฉพาะเพื่อกลุ่มผู้ป่วยสโตรกที่มีอาการเฉียบพลันหรืออ่อนแรงรุนแรงระดับอัมพาตครึ่งซีกชนิดสมบูรณ์ (Complete Hemiplegia) ซึ่งสูญเสียการควบคุมกล้ามเนื้อแกนกลางลำตัว มักมีอาการคอพับเอียงหรือไถลสไลด์ตกจากเก้าอี้ ระบบปรับเอนจะช่วยจัดศูนย์ถ่วงน้ำหนักและลดความเสี่ยงแผลกดทับได้อย่างมีประสิทธิผล",
+                features: [
+                    "<strong>ระบบพนักพิงรองรับศีรษะแบบสูงพิเศษ (High Backrest):</strong> พร้อมติดตั้งเบาะประคองข้างหูเพื่อป้องกันภาวะกระดูกคอพับเอียงคัด",
+                    "<strong>กลไกเอียงเบาะทั้งชุด (Tilt-in-Space):</strong> สับเปลี่ยนมุมกดดันจากก้นกบกระจายไปยังแผ่นหลังกว้าง โดยไม่ทำให้โครงสะโพกไถลคลายตัว",
+                    "<strong>สายรัดประคองอุ้งเชิงกรานและลำตัว:</strong> ตัวล็อกผ้าแบบนุ่มช่วยยึดโยงสรีระร่างกายส่วนบนให้ตั้งตรงสมมาตรอย่างปลอดภัยตลอดเวลา"
+                ]
+            },
+            group3: {
+                title: "วีลแชร์ฟังก์ชันขับเคลื่อนไฟฟ้าอัตโนมัติ (Intelligent Joystick Wheelchair)",
+                desc: "ตอบสนองสิทธิ์และอิสรภาพของผู้ป่วยระยะฟื้นฟูที่มีสมรรถภาพทางจิตใจดีเยี่ยม และสามารถใช้กล้ามเนื้อมือฝั่งปรกติในการควบคุมคันบังคับหรือจอยสติ๊กได้อย่างคล่องแคล่ว ช่วยทลายกำแพงความพิการให้ผู้ป่วยสามารถเดินทางท่องเที่ยว ทำงาน หรือช่วยเหลือตัวเองรอบบ้านได้โดยไม่ต้องพึ่งแรงเข็นจากญาติ",
+                features: [
+                    "<strong>ชุดแผงควบคุมปรับสลับฝั่งอิสระ (Adaptive Joystick):</strong> สามารถย้ายโมดูลปุ่มกดมาติดตั้งไว้ที่แขนฝั่งขวาหรือซ้ายตามความถนัดของคนไข้",
+                    "<strong>ระบบเบรกแม่เหล็กไฟฟ้านิรภัย (Electromagnetic Safety):</strong> ตัวรถจะทำการหยุดนิ่งล็อกล้อในทันทีที่ผู้ป่วยปล่อยมือจากจอยสติ๊ก ป้องกันรถไหลตกร่องทางลาด",
+                    "<strong>ระบบลูกล้อค้ำกันหงายด้านหลัง (Anti-Tipper Wheels):</strong> ป้องกันอุบัติเหตุการล้มหงายไปด้านหลังขณะขับเคลื่อนผ่านทางต่างระดับหรือเนินชัน"
+                ]
+            }
+        };
+
+        function switchCondition(groupKey) {
+            for (let i = 1; i <= 3; i++) {
+                const btn = document.getElementById(`btn-group${i}`);
+                const dot = document.getElementById(`dot-group${i}`);
+                btn.className = "p-6 rounded-2xl text-left border-2 border-zinc-100 bg-white shadow-sm transition-all group relative";
+                dot.className = "w-2 h-2 rounded-full bg-transparent absolute top-4 right-4";
+            }
+            const activeBtn = document.getElementById(`btn-${groupKey}`);
+            const activeDot = document.getElementById(`dot-${groupKey}`);
+            activeBtn.className = "p-6 rounded-2xl text-left border-2 border-zinc-900 bg-white shadow-sm transition-all group relative";
+            activeDot.className = "w-2 h-2 rounded-full bg-indigo-600 absolute top-4 right-4";
+
+            const data = conditionData[groupKey];
+            document.getElementById('wheelchair-title').innerHTML = data.title;
+            document.getElementById('wheelchair-desc').innerHTML = data.desc;
+            const featuresList = document.getElementById('wheelchair-features');
+            featuresList.innerHTML = '';
+            data.features.forEach(f => {
+                const li = document.createElement('li');
+                li.className = "flex items-start gap-2.5";
+                li.innerHTML = `<span class="text-indigo-500 mt-0.5 font-bold">•</span> <span class="leading-relaxed">${f}</span>`;
+                featuresList.appendChild(li);
+            });
+        }
+
+        function updateVisuals() {
+            const recline = document.getElementById('form-recline').value;
+            const elevate = document.getElementById('form-elevate').value;
+            const cushion = document.getElementById('form-cushion').value;
+            const armrest = document.getElementById('form-armrest').value;
+            const footrest = document.getElementById('form-footrest').value;
+
+            // อัปเดตพนักพิง
+            const backGroup = document.getElementById('svg-backrest-group');
+            const backLabel = document.getElementById('lbl-back-status');
+            if (recline === 'reclining') {
+                backGroup.setAttribute('transform', 'rotate(-45 50 120)');
+                backLabel.innerText = '• MODULE-BACK: RECLINED (45°)';
+                backLabel.className = 'text-emerald-400 font-bold';
+            } else {
+                backGroup.setAttribute('transform', 'rotate(0 50 120)');
+                backLabel.innerText = '• MODULE-BACK: UPRIGHT';
+                backLabel.className = 'text-zinc-500';
+            }
+
+            // อัปเดตที่พักเท้า
+            const footGroup = document.getElementById('svg-footrest-group');
+            const footLabel = document.getElementById('lbl-foot-status');
+            
+            if (elevate === 'yes') {
+                footGroup.setAttribute('transform', 'rotate(-61 110 120)');
+                footGroup.style.opacity = '1';
+                footLabel.innerText = '• MODULE-FOOT: ELEVATED';
+                footLabel.className = 'text-emerald-400 font-bold';
+            } else if (footrest === 'detachable') {
+                footGroup.setAttribute('transform', 'translate(15, -45) rotate(-15 110 120)');
+                footGroup.style.opacity = '0.3'; 
+                footLabel.innerText = '• MODULE-FOOT: DETACHED (UP)';
+                footLabel.className = 'text-emerald-400 font-bold';
+            } else {
+                footGroup.setAttribute('transform', 'rotate(0 110 120)');
+                footGroup.style.opacity = '1';
+                footLabel.innerText = '• MODULE-FOOT: LOCKED';
+                footLabel.className = 'text-zinc-500';
+            }
+
+            // อัปเดตที่เท้าแขน
+            const armGroup = document.getElementById('svg-armrest-group');
+            const armLabel = document.getElementById('lbl-arm-status');
+            if(armrest === 'removable') {
+                armGroup.style.opacity = '0.3';
+                armLabel.innerText = '• MODULE-ARM: DETACHED';
+                armLabel.className = 'text-emerald-400 font-bold';
+            } else {
+                armGroup.style.opacity = '1';
+                armLabel.innerText = '• MODULE-ARM: LOCKED';
+                armLabel.className = 'text-zinc-500';
+            }
+
+            // อัปเดตสีเบาะ
+            const seatMain = document.getElementById('svg-seat-main');
+            const seatTop = document.getElementById('svg-seat-top');
+            const seatColors = { air: '#4F46E5', gel: '#0891B2', foam: '#D97706', memory: '#7C3AED' };
+            const seatTopColors = { air: '#818CF8', gel: '#22D3EE', foam: '#F59E0B', memory: '#A78BFA' };
+            
+            seatMain.setAttribute('fill', seatColors[cushion]);
+            seatTop.setAttribute('fill', seatTopColors[cushion]);
+            
+            document.getElementById('visual-indicator').innerText = document.getElementById('form-cushion').options[document.getElementById('form-cushion').selectedIndex].text;
+        }
+
+        function resetCalculator() {
+            ['meas-a', 'meas-b', 'meas-c', 'meas-d', 'meas-e'].forEach(id => document.getElementById(id).value = '');
+            ['form-armrest', 'form-footrest', 'form-cushion', 'form-tire', 'form-recline', 'form-elevate', 'trunk-control'].forEach(id => document.getElementById(id).selectedIndex = 0);
+            document.getElementById('result-box').classList.add('hidden');
+            updateVisuals();
+        }
+
+        function calculateWheelchair() {
+            const a = parseFloat(document.getElementById('meas-a').value);
+            const b = parseFloat(document.getElementById('meas-b').value);
+            const c = parseFloat(document.getElementById('meas-c').value);
+            const d = parseFloat(document.getElementById('meas-d').value);
+            const e = parseFloat(document.getElementById('meas-e').value);
+            const trunkCtrl = document.getElementById('trunk-control').value;
+
+            if (!a || !b || !c || (!d && trunkCtrl === 'good') || (!e && trunkCtrl === 'poor')) {
+                alert('กรุณากรอกข้อมูลสรีระ (1-4) ให้ครบถ้วนเพื่อการประมวลผลทางการแพทย์ที่แม่นยำครับ');
+                return;
+            }
+            
+            const seatWidthCm = a + 5; 
+            const seatWidthInch = (seatWidthCm / 2.54).toFixed(1);
+
+            let stdSize = "";
+            if (seatWidthInch <= 14.5) stdSize = "S (14\")";
+            else if (seatWidthInch <= 16.5) stdSize = "M (16\")";
+            else if (seatWidthInch <= 18.5) stdSize = "L (18\")";
+            else stdSize = "XL (20\")";
+
+            let backrestCm = 0;
+            if (trunkCtrl === 'good') {
+                backrestCm = d;
+            } else {
+                backrestCm = e;
+            }
+            
+            document.getElementById('res-width').innerText = seatWidthCm;
+            document.getElementById('res-depth').innerText = b - 4;
+            document.getElementById('res-foot').innerText = c;
+            document.getElementById('res-back').innerText = backrestCm;
+            document.getElementById('res-size-std').innerText = stdSize.split(' ')[0];
+            
+            document.getElementById('result-box').classList.remove('hidden');
+            document.getElementById('result-box').scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+        }
+
+        // Initialize features list
+        switchCondition('group1');
+    </script>
+</body>
+</html>
